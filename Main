@@ -1,0 +1,42 @@
+package retirement.calculator;
+import java.util.Scanner;
+
+public class RetirementCalculator 
+{
+    public static void main(String[] args) 
+    {
+        Scanner input = new Scanner(System.in);
+        int age, DRA, DRS;
+        
+        System.out.print("Enter age: ");
+        age = input.nextInt();
+        System.out.print("Enter desired retirement age: ");
+        DRA = input.nextInt();
+        while (DRA < age)
+        {
+            System.out.print("Enter age that is greater than current age: ");
+            DRA = input.nextInt();
+        }
+        System.out.print("Enter desired retirement savings: ");
+        DRS = input.nextInt();
+        
+        System.out.print("Under the mattress starting balance: ");
+        int UM = input.nextInt();
+        System.out.print("Bank savings starting balance: ");
+        int BS = input.nextInt();
+        System.out.print("Bonds starting balance: ");
+        int bonds = input.nextInt();
+        System.out.print("Stocks starting balance: ");
+        int stocks = input.nextInt();
+        
+        System.out.println(age + " " + DRA + " " + DRS);
+    }
+    
+    public static void Menu()
+    {
+        System.out.println("1) Under the mattress: ");
+        System.out.println("2) Bank savings: ");
+        System.out.println("3) Bonds: ");
+        System.out.println("4) Stocks: ");
+    }
+}
