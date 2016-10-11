@@ -1,35 +1,53 @@
 package retirement.calculator;
 import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
 
 public class RetirementCalculator 
 {
     public static void main(String[] args) 
     {
-        Scanner input = new Scanner(System.in);
-        int age, DRA, DRS;
+        File myStocksFile = new File("stocks.txt");
+        File myBondsFile = new File("bonds.txt");
+        try
+        {
+            Scanner fileScanner = new Scanner(myStocksFile);
+            
+            while(fileScanner.hasNextFloat())
+            {
+                float myFloat = fileScanner.nextFloat();
+                System.out.println(myFloat);
+            }
+        }
+        catch (FileNotFoundException myException)
+        {
+            System.out.println("File does not exist.");
+        }
+        
+        Scanner inputScanner = new Scanner(System.in);
+        int age, DRA, DRS;        
         
         System.out.print("Enter age: ");
-        age = input.nextInt();
+        age = inputScanner.nextInt();
         System.out.print("Enter desired retirement age: ");
-        DRA = input.nextInt();
+        DRA = inputScanner.nextInt();
         while (DRA < age)
         {
             System.out.print("Enter age that is greater than current age: ");
-            DRA = input.nextInt();
+            DRA = inputScanner.nextInt();
         }
         System.out.print("Enter desired retirement savings: ");
-        DRS = input.nextInt();
+        DRS = inputScanner.nextInt();
         
         System.out.print("Under the mattress starting balance: ");
-        int UM = input.nextInt();
+        double UM = inputScanner.nextDouble();
         System.out.print("Bank savings starting balance: ");
-        int BS = input.nextInt();
+        double BS = inputScanner.nextDouble();
         System.out.print("Bonds starting balance: ");
-        int bonds = input.nextInt();
+        double bonds = inputScanner.nextDouble();
         System.out.print("Stocks starting balance: ");
-        int stocks = input.nextInt();
+        double stocks = inputScanner.nextDouble();
         
-        System.out.println(age + " " + DRA + " " + DRS);
     }
     
     public static void Menu()
@@ -38,5 +56,19 @@ public class RetirementCalculator
         System.out.println("2) Bank savings: ");
         System.out.println("3) Bonds: ");
         System.out.println("4) Stocks: ");
+    }
+    
+    public static double underMattress(double initualBalance)
+    {
+        return initualBalance;
+    }
+    
+    public static double bankSavings(int numberOfYears, double initialBalance)
+    {
+        double newBalance;
+        
+        newBalance = initialBalance + initialBalance * .02;
+        
+        return newBalance;
     }
 }
