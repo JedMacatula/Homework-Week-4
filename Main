@@ -9,14 +9,20 @@ public class RetirementCalculator
     {
         File myStocksFile = new File("stocks.txt");
         File myBondsFile = new File("bonds.txt");
+        Scanner inputScanner = new Scanner(System.in);
+        int age, DRA, DRS, yearsUntilRetire;       
+        double[] myListOfStocks = new double[50];
+        double[] myListOfBonds = new double[50];
+        
         try
         {
             Scanner fileScanner = new Scanner(myStocksFile);
             
             while(fileScanner.hasNextFloat())
             {
-                float myFloat = fileScanner.nextFloat();
-                System.out.println(myFloat);
+                int index = 0;
+                myListOfStocks[index] = fileScanner.nextFloat();
+                index++;
             }
         }
         catch (FileNotFoundException myException)
@@ -24,8 +30,21 @@ public class RetirementCalculator
             System.out.println("File does not exist.");
         }
         
-        Scanner inputScanner = new Scanner(System.in);
-        int age, DRA, DRS;        
+        try
+        {
+            Scanner fileScanner = new Scanner(myBondsFile);
+            
+            while(fileScanner.hasNextFloat())
+            {
+                int index = 0;
+                myListOfBonds[index] = fileScanner.nextFloat();
+                index++;
+            }
+        }
+        catch (FileNotFoundException myException)
+        {
+            System.out.println("File does not exist.");
+        }
         
         System.out.print("Enter age: ");
         age = inputScanner.nextInt();
@@ -38,6 +57,7 @@ public class RetirementCalculator
         }
         System.out.print("Enter desired retirement savings: ");
         DRS = inputScanner.nextInt();
+        yearsUntilRetire = DRA - age;
         
         System.out.print("Under the mattress starting balance: ");
         double UM = inputScanner.nextDouble();
@@ -68,6 +88,20 @@ public class RetirementCalculator
         double newBalance;
         
         newBalance = initialBalance + initialBalance * .02;
+        
+        return newBalance;
+    }
+    
+    public static double stocksSavings(int numberOfYears, double initialBalance, double[] listOfStocks)
+    {
+        double newBalance = 0;
+        
+        return newBalance;
+    }
+    
+    public static double bondsSavings(int numberOfYears, double initialBalance, double[] listOfBonds)
+    {
+        double newBalance = 0;
         
         return newBalance;
     }
